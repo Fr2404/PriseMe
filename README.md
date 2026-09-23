@@ -1,2 +1,529 @@
-# PriseMe
-Femboys need to stop stressing that much :3
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Praise Me - Cute Femboy Compliment Generator Online</title>
+    <meta name="description" content="Click or press any key to receive the sweetest, most wholesome femboy compliments, cute ducks, and validation. ✨">
+    <meta name="keywords" content="femboy generator, sweet compliments, wholesome, cute validation, text generator, friendly web, boykisser, blahaj">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://your-hosting-link.com">
+
+    <!-- Social Media SEO -->
+    <meta property="og:title" content="Praise Me - Wholesome Femboy Compliments">
+    <meta property="og:description" content="Click to receive your daily dose of absolute sweetness and valid comfy vibes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-hosting-link.com">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        /* CUSTOM CURSOR */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #fce4ec; /* Soft pastel pink background */
+            user-select: none;
+            overflow: hidden; 
+            padding: 20px;
+            touch-action: manipulation; 
+            
+            cursor: url('https://i.imgur.com/EaQTnP9.png') 16 16, auto;
+        }
+
+        body:active {
+            cursor: url('https://i.imgur.com/EaQTnP9.png') 16 16, auto;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            text-transform: lowercase;
+            font-weight: bold;
+            color: #333;
+            pointer-events: none;
+            text-align: center;
+            margin: 0;
+            z-index: 10;
+        }
+
+        /* RETRO STYLE POPUPS */
+        .popup-random {
+            position: absolute;
+            padding: 12px 18px;
+            background: white;
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0px #000;
+            font-weight: bold;
+            font-size: 1rem;
+            color: #000;
+            max-width: 85vw;
+            z-index: 100;
+            pointer-events: none;
+            animation: aparecer 0.1s ease-out;
+        }
+
+        /* KAWAII VECTOR DUCK AND TEXT BUBBLE */
+        .duck-container {
+            position: absolute;
+            z-index: 5;
+            pointer-events: none;
+            bottom: 12%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            will-change: transform, left;
+        }
+
+        .duck-svg {
+            width: 75px;
+            height: 75px;
+            filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.15));
+            animation: waddle 0.3s infinite alternate ease-in-out;
+        }
+
+        .duck-bubble {
+            background: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 12px;
+            padding: 3px 8px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #ff69b4;
+            margin-bottom: 2px;
+            box-shadow: 2px 2px 0px #000;
+            white-space: nowrap;
+            animation: floatBubble 1s infinite alternate ease-in-out;
+        }
+
+        /* PARTICLES */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.2rem;
+            z-index: 99;
+            animation: flyOut 0.6s ease-out forwards;
+        }
+
+        /* LARGER BOYKISSER IN BOTTOM RIGHT CORNER */
+        #boykisser-zone {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #boykisser-img {
+            width: 260px; /* Much larger Boykisser */
+            height: auto;
+            transition: transform 0.1s ease;
+            filter: drop-shadow(3px 6px 10px rgba(0,0,0,0.18));
+        }
+
+        #boykisser-zone:hover #boykisser-img {
+            transform: scale(1.05);
+        }
+
+        #boykisser-zone:active #boykisser-img {
+            transform: scale(0.95) translateY(4px);
+        }
+        
+        #pet-counter {
+            background: rgba(255, 255, 255, 0.95);
+            border: 3px solid #000;
+            padding: 4px 12px;
+            font-size: 1rem;
+            border-radius: 12px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        /* BLÄHAJ SWIMMING FREELY ACROSS THE SCREEN */
+        #blahaj-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0.85;
+            will-change: transform;
+            transition: transform 0.1s linear;
+        }
+
+        #blahaj-img {
+            width: 220px;
+            height: auto;
+            filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.15));
+            animation: swimWiggle 1.2s infinite alternate ease-in-out;
+        }
+
+        /* PC View */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 8rem;
+            }
+            .popup-random {
+                font-size: 1.2rem;
+                max-width: 350px;
+            }
+            .duck-svg {
+                width: 90px;
+                height: 90px;
+            }
+            .duck-bubble {
+                font-size: 0.85rem;
+            }
+            #boykisser-img {
+                width: 340px; /* Extra large on desktop */
+            }
+            #blahaj-img {
+                width: 280px;
+            }
+        }
+
+        @keyframes aparecer {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes flyOut {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--mx), var(--my)) scale(0.2); opacity: 0; }
+        }
+
+        @keyframes waddle {
+            0% { transform: translateY(0) rotate(-4deg); }
+            100% { transform: translateY(-6px) rotate(4deg); }
+        }
+
+        @keyframes floatBubble {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-3px); }
+        }
+
+        /* Swimming motion effect for Blähaj */
+        @keyframes swimWiggle {
+            0% { transform: rotate(-3deg) translateY(-4px); }
+            100% { transform: rotate(3deg) translateY(4px); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BACKGROUND SWIMMING BLÄHAJ -->
+    <div id="blahaj-container">
+        <img id="blahaj-img" src="https://i.imgur.com/UtGhZEz.png" alt="Blähaj Shark">
+    </div>
+
+    <h1>praise me~ uwu :3</h1>
+
+    <!-- BOYKISSER CORNER -->
+    <div id="boykisser-zone">
+        <div id="pet-counter">pats: 0</div>
+        <img id="boykisser-img" src="https://i.imgur.com/2NTvXyE.png" alt="Boykisser Cat">
+    </div>
+
+<script>
+    // --- NATIVE AUDIO GENERATOR ---
+    function reproducirPlup() {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const ganancia = ctx.createGain();
+            
+            osc.connect(ganancia);
+            ganancia.connect(ctx.destination);
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(440, ctx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(1100, ctx.currentTime + 0.08); 
+            
+            ganancia.gain.setValueAtTime(0.2, ctx.currentTime);
+            ganancia.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.08);
+        } catch (e) { }
+    }
+
+    // --- PET SOUND (Soft Purr/Meow) ---
+    function reproducirMiau() {
+        try {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            const ctx = new AudioContext();
+            const osc = ctx.createOscillator();
+            const ganancia = ctx.createGain();
+            
+            osc.connect(ganancia);
+            ganancia.connect(ctx.destination);
+            
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(660, ctx.currentTime); 
+            osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(550, ctx.currentTime + 0.2); 
+            
+            ganancia.gain.setValueAtTime(0.15, ctx.currentTime);
+            ganancia.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.25);
+        } catch (e) { }
+    }
+
+    const frasesRandom = [
+        "🎀 Your outfit today looks absolutely adorable!",
+        "🧦 Your thigh highs match your comfy aesthetic perfectly.",
+        "💖 You are doing such a good job today, keep it up!",
+        "🎭 Your spin is literally perfect, 10/10!",
+        "🧠 You are so smart, look at you fixing those tricky bugs!",
+        "🧸 Sending you the biggest, warmest virtual hug right now.",
+        "💅 Your eyeliner looks incredibly sharp and symmetric today!",
+        "🧁 You are valid, loved, and amazing just the way you are.",
+        "🐾 You have such a sweet, kind heart, never forget that.",
+        "🔒 Reminder: You are doing the best you can, and that's enough.",
+        "🥛 You make the world a much brighter and cuter place.",
+        "🌸 Your aesthetic is absolutely unmatched, so pretty!",
+        "🎲 Your favorite video games are lucky to have a player like you.",
+        "🐱 You deserve all the cozy headpats in the world today.",
+        "🧼 You are such a comfort person to everyone around you.",
+        "🎧 Your music taste is wonderful and super unique.",
+        "✨ You look absolutely radiant and beautiful today!",
+        "💫 Your oversized hoodies always look so soft and perfect on you.",
+        "🍭 Thank you for existing and being your true, authentic self.",
+        "👑 Peak cuteness achieved! You are literal royalty.",
+        "🩰 Your vibe is so peaceful and incredibly cozy.",
+        "🔮 Everything is going to be alright, you've got this!",
+        "🪞 Look in the mirror: that's a 100% certified cutie right there.",
+        "🔋 Sending you extra energy for the rest of your day!",
+        "🍀 You are such a lucky charm to have in anyone's life.",
+        "🧉 Take a sip of water and remember to rest, you precious bean.",
+        "☁️ May your day be as soft and pleasant as a cloud."
+    ];
+
+    const coloresRandom = ["#ffd1dc", "#ffb6c1", "#e0bbe4", "#f49ac2", "#ffb7b2", "#bffcc6", "#c7ceea"];
+    const sparkles = ["✨", "🌸", "💖", "⭐", "🐾"];
+    const duckSounds = ["quack~! 🐥", "uwu <3", "quack quack! ✨", "you're cute! 🎀", "pats? 🐾", "soft quack~ 🌸"];
+
+    // --- PARTICLES CREATION ---
+    function spawnParticles(x, y, isPetting = false) {
+        const count = isPetting ? 12 : 6;
+        const visuales = isPetting ? ["❤️", "💖", "🐾", "✨"] : sparkles;
+        
+        for (let i = 0; i < count; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.innerText = visuales[Math.floor(Math.random() * visuales.length)];
+            p.style.left = `${x}px`;
+            p.style.top = `${y}px`;
+            
+            const mx = (Math.random() - 0.5) * (isPetting ? 160 : 100);
+            const my = (Math.random() - 0.5) * (isPetting ? 160 : 100) - (isPetting ? 60 : 0);
+            p.style.setProperty('--mx', `${mx}px`);
+            p.style.setProperty('--my', `${my}px`);
+            
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 600);
+        }
+    }
+
+    // --- POPUP SYSTEM ---
+    function crearPopup(x, y) {
+        reproducirPlup();
+
+        const popup = document.createElement('div');
+        popup.className = 'popup-random';
+        
+        popup.innerText = frasesRandom[Math.floor(Math.random() * frasesRandom.length)];
+        popup.style.backgroundColor = coloresRandom[Math.floor(Math.random() * coloresRandom.length)];
+
+        document.body.appendChild(popup);
+
+        const anchoPopup = popup.offsetWidth;
+        const altoPopup = popup.offsetHeight;
+
+        let posX, posY;
+
+        if (x === undefined || y === undefined) {
+            posX = Math.random() * (window.innerWidth - anchoPopup - 20) + 10;
+            posY = Math.random() * (window.innerHeight - altoPopup - 20) + 10;
+        } else {
+            posX = x - (anchoPopup / 2);
+            posY = y - (altoPopup / 2);
+
+            if (posX < 10) posX = 10;
+            if (posY < 10) posY = 10;
+            if (posX + anchoPopup > window.innerWidth - 10) posX = window.innerWidth - anchoPopup - 10;
+            if (posY + altoPopup > window.innerHeight - 10) posY = window.innerHeight - altoPopup - 10;
+        }
+
+        popup.style.left = `${posX}px`;
+        popup.style.top = `${posY}px`;
+
+        setTimeout(() => {
+            popup.style.transition = "opacity 0.3s ease";
+            popup.style.opacity = "0";
+            setTimeout(() => popup.remove(), 300);
+        }, 2000);
+    }
+
+    // --- KAWAII SVG DUCK BUILDER ---
+    function createDuckSVG() {
+        return `
+            <svg class="duck-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <!-- Duck Body -->
+                <ellipse cx="48" cy="62" rx="30" ry="22" fill="#fff9a6" stroke="#222" stroke-width="3"/>
+                <path d="M 22 58 Q 10 50 18 42 Q 26 50 26 58 Z" fill="#fff9a6" stroke="#222" stroke-width="3"/>
+                
+                <!-- Head -->
+                <circle cx="65" cy="38" r="21" fill="#fff9a6" stroke="#222" stroke-width="3"/>
+                
+                <!-- Kawaii Eyes -->
+                <ellipse cx="72" cy="34" rx="3.5" ry="5" fill="#222"/>
+                <circle cx="73.5" cy="32.5" r="1.5" fill="#fff"/>
+                
+                <!-- Pink Blush -->
+                <ellipse cx="65" cy="42" rx="4.5" ry="3" fill="#ffb6c1" opacity="0.8"/>
+                
+                <!-- Beak -->
+                <ellipse cx="82" cy="40" rx="9" ry="5" fill="#ffb347" stroke="#222" stroke-width="2.5"/>
+                
+                <!-- Ribbon Bow -->
+                <g transform="translate(56, 17) scale(0.7)">
+                    <path d="M 0 10 C -10 0 -10 20 0 10 Z" fill="#ff8da1" stroke="#222" stroke-width="2"/>
+                    <path d="M 0 10 C 10 0 10 20 0 10 Z" fill="#ff8da1" stroke="#222" stroke-width="2"/>
+                    <circle cx="0" cy="10" r="3" fill="#ffb6c1" stroke="#222" stroke-width="1.5"/>
+                </g>
+                
+                <!-- Feet -->
+                <ellipse cx="40" cy="84" rx="7" ry="3" fill="#ffb347" stroke="#222" stroke-width="2"/>
+                <ellipse cx="56" cy="84" rx="7" ry="3" fill="#ffb347" stroke="#222" stroke-width="2"/>
+            </svg>
+        `;
+    }
+
+    // --- RANDOM CROSSING DUCKS ---
+    function spawnDuck() {
+        const duckContainer = document.createElement('div');
+        duckContainer.className = 'duck-container';
+
+        const bubble = document.createElement('div');
+        bubble.className = 'duck-bubble';
+        bubble.innerText = duckSounds[Math.floor(Math.random() * duckSounds.length)];
+        
+        duckContainer.appendChild(bubble);
+        duckContainer.insertAdjacentHTML('beforeend', createDuckSVG());
+
+        const goRight = Math.random() > 0.5;
+        let currentPos = goRight ? -100 : window.innerWidth + 100;
+        const targetPos = goRight ? window.innerWidth + 100 : -100;
+        
+        duckContainer.style.left = `${currentPos}px`;
+        duckContainer.style.bottom = `${8 + Math.random() * 14}%`;
+
+        if (!goRight) {
+            duckContainer.style.transform = 'scaleX(-1)';
+            bubble.style.transform = 'scaleX(-1)';
+        }
+
+        document.body.appendChild(duckContainer);
+
+        const speed = 1.8 + Math.random() * 2.2;
+        const moveInterval = setInterval(() => {
+            if (goRight) {
+                currentPos += speed;
+                if (currentPos >= targetPos) {
+                    clearInterval(moveInterval);
+                    duckContainer.remove();
+                }
+            } else {
+                currentPos -= speed;
+                if (currentPos <= targetPos) {
+                    clearInterval(moveInterval);
+                    duckContainer.remove();
+                }
+            }
+            duckContainer.style.left = `${currentPos}px`;
+        }, 20);
+
+        setTimeout(spawnDuck, 7000 + Math.random() * 6000);
+    }
+
+    // --- DYNAMIC FREE-SWIMMING BLÄHAJ SCRIPT ---
+    const blahaj = document.getElementById('blahaj-container');
+    let bx = Math.random() * (window.innerWidth - 250);
+    let by = Math.random() * (window.innerHeight - 200);
+    let targetX = Math.random() * (window.innerWidth - 250);
+    let targetY = Math.random() * (window.innerHeight - 200);
+
+    function updateBlahajPosition() {
+        // Move towards target position smoothly
+        const dx = targetX - bx;
+        const dy = targetY - by;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 20) {
+            // Pick new random destination across the whole screen
+            targetX = Math.random() * (window.innerWidth - 250);
+            targetY = Math.random() * (window.innerHeight - 200);
+        } else {
+            const speed = 1.2;
+            bx += (dx / dist) * speed;
+            by += (dy / dist) * speed;
+        }
+
+        // Flip image based on swimming direction (left or right)
+        const isFacingLeft = dx < 0;
+        const flipScale = isFacingLeft ? 'scaleX(-1)' : 'scaleX(1)';
+
+        blahaj.style.transform = `translate(${bx}px, ${by}px) ${flipScale}`;
+        requestAnimationFrame(updateBlahajPosition);
+    }
+    updateBlahajPosition();
+
+    // --- PETTING LOGIC FOR BOYKISSER ---
+    let petCount = 0;
+    const boykisserZone = document.getElementById('boykisser-zone');
+    const petCounterDisplay = document.getElementById('pet-counter');
+
+    boykisserZone.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        petCount++;
+        petCounterDisplay.innerText = `pats: ${petCount}`;
+        
+        reproducirMiau();
+        spawnParticles(e.clientX, e.clientY, true);
+
+        if (petCount % 10 === 0) {
+            crearPopup(window.innerWidth - 200, window.innerHeight - 200);
+        }
+    });
+
+    // Start duck loop
+    setTimeout(spawnDuck, 2000);
+
+    // General event listeners
+    document.body.addEventListener('click', (e) => {
+        crearPopup(e.clientX, e.clientY);
+        spawnParticles(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('keydown', () => {
+        crearPopup();
+        spawnParticles(window.innerWidth / 2, window.innerHeight / 2);
+    });
+</script>
+</body>
+</html>
