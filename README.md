@@ -3,18 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praise Me - Cute Femboy Compliment Generator Online</title>
     <meta name="description" content="Click or press any key to receive the sweetest, most wholesome femboy compliments, cute ducks, and validation. ✨">
     <meta name="keywords" content="femboy generator, sweet compliments, wholesome, cute validation, text generator, friendly web, boykisser, blahaj">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://your-hosting-link.com">
-
     <!-- Social Media SEO -->
     <meta property="og:title" content="Praise Me - Wholesome Femboy Compliments">
     <meta property="og:description" content="Click to receive your daily dose of absolute sweetness and valid comfy vibes.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://your-hosting-link.com">
-    
     <style>
         * {
             box-sizing: border-box;
