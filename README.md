@@ -31,11 +31,11 @@
             padding: 20px;
             touch-action: manipulation; 
             
-            cursor: url('https://i.imgur.com/EaQTnP9.png') 16 16, auto;
+            cursor: url('paw.png') 16 16, auto;
         }
 
         body:active {
-            cursor: url('https://i.imgur.com/EaQTnP9.png') 16 16, auto;
+            cursor: url('paw.png') 16 16, auto;
         }
 
         h1 {
@@ -219,7 +219,7 @@
 
     <!-- BACKGROUND SWIMMING BLÄHAJ -->
     <div id="blahaj-container">
-        <img id="blahaj-img" src="https://i.postimg.cc/Yqs36pM9/New-Project-15-removebg-preview.png" alt="Blähaj Shark">
+        <img id="blahaj-img" src="bla.png" alt="Blähaj Shark">
     </div>
 
     <h1>praise me~ uwu :3</h1>
@@ -227,7 +227,7 @@
     <!-- BOYKISSER CORNER -->
     <div id="boykisser-zone">
         <div id="pet-counter">pats: 0</div>
-        <img id="boykisser-img" src="https://imgur.com/2NTvXyE.png" alt="Boykisser Cat">
+        <img id="boykisser-img" src="boykiss.png" alt="Boykisser Cat">
     </div>
 
 <script>
