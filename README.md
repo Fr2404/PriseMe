@@ -219,7 +219,7 @@
 
     <!-- BACKGROUND SWIMMING BLÄHAJ -->
     <div id="blahaj-container">
-        <img id="blahaj-img" src="https://imgur.com/UtGhZEz.png" alt="Blähaj Shark">
+        <img id="blahaj-img" src="https://i.postimg.cc/Yqs36pM9/New-Project-15-removebg-preview.png" alt="Blähaj Shark">
     </div>
 
     <h1>praise me~ uwu :3</h1>
